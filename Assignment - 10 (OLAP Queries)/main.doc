@@ -1,0 +1,9 @@
+mysql> select * from sales;
+
+mysql> select item_name, sum(quantity) from sales where item_name='skirt';
+
+mysql> select item_name, sum(quantity) from sales group by item_name;
+
+mysql> select sum(quantity) from sales group by color;
+
+mysql> select item_name, color, cloth_size, sum(quantity) from sales group by item_name, color, cloth_size with rollup;
