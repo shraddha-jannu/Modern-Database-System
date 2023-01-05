@@ -1,0 +1,10 @@
+mysql> create table sale(ronnum integer, name varchar(40), region varchar(20), sales integer);
+
+mysql> select * from sale;
+
+mysql> select ronnum as 'rank', name, region, sales from (select ronnum, name, region, sum(sales) as Sales from sale group by name, region order by sum(sales)DESC) as sale_record where ronnum<=10;
+
+mysql> select ronnum, name, region, sales, rank() over (partition by name, region order by sales desc) as 'rank' from sale;
+
+mysql> select ronnum, name, region, sales, rank() over(partition by region order by sales desc) as 'rank' from sale;
+
